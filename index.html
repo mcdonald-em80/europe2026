@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK & European Christmas Markets 2026</title>
+<style>
+  /* ─── Reset & base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:    #fdf8f2;
+    --parchment:#f5ede0;
+    --border:   #e0d5c7;
+    --text:     #2c2420;
+    --muted:    #8a7a6e;
+    --accent:   #8b2020;
+    --accent-lt:#fdf0f0;
+    --green:    #2a5c3f;
+    --green-lt: #eef6f1;
+    --gold:     #b07d2a;
+    --gold-lt:  #fdf5e6;
+    --card:     #ffffff;
+    --radius:   10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ─── Layout ─── */
+  .page { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  /* ─── Hero ─── */
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem 2.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 1.75rem;
+  }
+  .hero-eyebrow {
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .hero-dates {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ─── Countdown ─── */
+  .countdown { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+  .countdown-unit { text-align: center; }
+  .countdown-num {
+    display: block;
+    font-size: 42px;
+    font-weight: normal;
+    color: var(--text);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    font-family: Georgia, serif;
+  }
+  .countdown-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: system-ui, sans-serif;
+    margin-top: 4px;
+  }
+  .hero-sub { font-size: 13px; color: var(--muted); margin-top: 1.25rem; font-family: system-ui, sans-serif; }
+
+  /* ─── Stats row ─── */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1.75rem; }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-num { font-size: 26px; color: var(--accent); }
+  .stat-label { font-size: 11px; color: var(--muted); font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+
+  /* ─── Section labels ─── */
+  .section-label {
+    font-size: 11px;
+    font-family: system-ui, sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  section { margin-bottom: 1.75rem; }
+
+  /* ─── Cards ─── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* ─── Link items (accommodation / activities) ─── */
+  .link-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-family: system-ui, sans-serif;
+  }
+  .link-item:last-child { border-bottom: none; }
+  .link-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .link-main { flex: 1; }
+  .link-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .link-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .link-url a { font-size: 12px; color: var(--accent); text-decoration: none; word-break: break-all; }
+  .link-url a:hover { text-decoration: underline; }
+  .badge {
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-family: system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .badge-booked { background: var(--green-lt); color: var(--green); }
+  .badge-looking { background: var(--parchment); color: var(--muted); }
+  .badge-confirmed { background: var(--gold-lt); color: var(--gold); }
+  .badge-wishlist { background: var(--parchment); color: var(--muted); }
+
+  /* ─── Budget ─── */
+  .budget-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--border); }
+  .budget-summary-cell { text-align: center; }
+  .budget-summary-num { font-size: 22px; color: var(--text); font-family: Georgia, serif; }
+  .budget-summary-label { font-size: 11px; color: var(--muted); font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+  .budget-progress { height: 5px; background: var(--parchment); margin: 0 18px 14px; border-radius: 3px; overflow: hidden; }
+  .budget-progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.4s ease; }
+  .budget-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border);
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+  }
+  .budget-row:last-child { border-bottom: none; }
+  .budget-row.total {
+    font-weight: 600;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 2px;
+  }
+  .budget-cat { color: var(--text); }
+  .budget-amt { color: var(--text); font-variant-numeric: tabular-nums; }
+  .budget-note { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  /* ─── Itinerary ─── */
+  .itinerary-leg { padding: 14px 18px; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; }
+  .itinerary-leg:last-child { border-bottom: none; }
+  .leg-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .leg-dates { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .leg-notes { font-size: 13px; color: var(--text); margin-top: 6px; }
+  .leg-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--accent); vertical-align: middle; }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: system-ui, sans-serif;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ─── Slideshow ─── */
+  .slideshow-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--parchment);
+    margin-bottom: 1.75rem;
+    border: 1px solid var(--border);
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    background-size: cover;
+    background-position: center;
+  }
+  .slide.active { opacity: 1; }
+  .slide-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--muted);
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    gap: 8px;
+    text-align: center;
+    padding: 1rem;
+  }
+  .slide-placeholder-icon { font-size: 32px; opacity: 0.4; }
+  .slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 16px;
+    background: linear-gradient(transparent, rgba(30,18,12,0.55));
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .slide-caption-place { font-weight: 600; font-size: 14px; }
+  .slide-caption-desc { font-size: 12px; opacity: 0.85; }
+  .slide-dots {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    display: flex;
+    gap: 6px;
+  }
+  .slide-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background 0.2s;
+    border: none;
+    padding: 0;
+  }
+  .slide-dot.active { background: #fff; }
+  .slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    transition: background 0.2s;
+    z-index: 2;
+    padding: 0;
+  }
+  .slide-arrow:hover { background: rgba(255,255,255,0.35); }
+  .slide-arrow.prev { left: 12px; }
+  .slide-arrow.next { right: 12px; }
+
+  @media (max-width: 480px) {
+    .countdown { gap: 1rem; }
+    .countdown-num { font-size: 32px; }
+    .hero { padding: 2rem 0.75rem 2rem; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+    .photo-item:nth-child(3n) { border-right: 1px solid var(--border); }
+    .photo-item:nth-child(2n) { border-right: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ░░ HERO & COUNTDOWN ░░ -->
+  <div class="hero">
+        <h1>UK &amp; European<br>Christmas Markets</h1>
+    <p class="hero-dates">13 November 2026 &mdash; 9 December 2026</p>
+
+    <div class="countdown" id="countdown">
+      <div class="countdown-unit"><span class="countdown-num" id="cd-days">—</span><span class="countdown-label">days</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-hours">—</span><span class="countdown-label">hours</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-mins">—</span><span class="countdown-label">minutes</span></div>
+    </div>
+    <p class="hero-sub">until departure from Melbourne</p>
+  </div>
+
+  <!-- ░░ SLIDESHOW ░░
+    HOW TO ADD YOUR PHOTOS:
+    1. Upload photos to https://imgur.com (no account needed — just drag & drop).
+    2. Open each uploaded image, right-click → "Copy image address" — it ends in .jpg or .png.
+    3. Replace the src="" values below with those direct image URLs.
+    4. Update the "place" and "desc" data attributes with a caption for each photo.
+    5. Add or remove .slide blocks as needed — the script handles any number.
+
+    ALTERNATIVE: Flickr, Google Drive (use the direct image link trick), or any image host
+    that gives you a direct .jpg/.png URL works fine.
+  -->
+  <div class="slideshow-wrap" id="slideshow">
+
+    <!-- ★ SLIDE 1 — replace src with your image URL ★ -->
+    <div class="slide" data-place="London" data-desc="London"
+         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/1280px-London_Skyline_%28125508655%29.jpeg');"></div>
+
+    <!-- ★ SLIDE 2 — replace src with your image URL ★ -->
+    <div class="slide" data-place="Bruges" data-desc="Bruges"
+         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Grand-Place_de_Bruges.jpg');"></div>
+
+    <!-- ★ SLIDE 3 — replace src with your image URL ★ -->
+    <div class="slide" data-place="Cologne" data-desc="Kölner Dom &amp; Christmas Market"
+         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/68/Cologne_Christmas_Market_4890067811.jpg');"></div>
+
+    <!-- ★ SLIDE 4 — replace src with your image URL ★ -->
+    <div class="slide" data-place="Munich" data-desc="Munich"
+         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/fd/Munchen_jarmark_Sendlinger_Tor.jpg');"></div>
+
+<!-- ★ SLIDE 5 — replace src with your image URL ★ -->
+    <div class="slide" data-place="Stuttgart" data-desc="Stuttgart"
+         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a3/Stuttgarter_Weihnachtsmarkt_auf_dem_Schillerplatz_-_panoramio.jpg');"></div>
+
+    <!-- Add more slides here by copying a .slide block above -->
+
+    <div class="slide-dots" id="slide-dots"></div>
+    <button class="slide-arrow prev" id="slide-prev" aria-label="Previous photo">&#8249;</button>
+    <button class="slide-arrow next" id="slide-next" aria-label="Next photo">&#8250;</button>
+    <div class="slide-caption">
+      <div>
+        <div class="slide-caption-place" id="slide-place"></div>
+        <div class="slide-caption-desc" id="slide-desc"></div>
+      </div>
+      <div id="slide-counter" style="font-size:12px; opacity:0.7;"></div>
+    </div>
+  </div>
+
+  <!-- ░░ STATS ░░ -->
+  <div class="stats">
+    <div class="stat-card"><div class="stat-num">25</div><div class="stat-label">nights away</div></div>
+    <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">passengers</div></div>
+    <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">countries</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">cities</div></div>
+  </div>
+
+  <!-- ░░ ITINERARY ░░ -->
+  <section>
+    <p class="section-label">Planned Itinerary</p>
+    <div class="card">
+      <!--
+        HOW TO EDIT: Copy a .itinerary-leg block and fill in your details.
+        Change the leg-dot background colour to suit (red = booked, grey = TBC).
+      -->
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--accent);"></span>Melbourne → London</div>
+        <div class="leg-dates">14 Nov · Flight</div>
+        <div class="leg-notes">Departing MEL, arriving LHR.</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--accent);"></span>UK</div>
+        <div class="leg-dates">14-22 Nov · Flight</div>
+        <div class="leg-notes">Locations TBC. Edgworth, Skem, Exeter.</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--accent);"></span>London</div>
+        <div class="leg-dates">Approx 23–25 Nov · 2 nights</div>
+        <div class="leg-notes">Covent Garden, Hyde Park Christmas markets - dates TBC August.</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Bruges</div>
+        <div class="leg-dates">Approx 25–27 Nov · 2 nights</div>
+        <div class="leg-notes">Train from London (via Brussels). Christmas markets open 20 Nov</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Brussels</div>
+        <div class="leg-dates">27-29 Nov · 2 nights</div>
+        <div class="leg-notes">Christmas markets open 27 Nov</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Cologne</div>
+        <div class="leg-dates">29 Nov - 1 Dec· 2 nights</div>
+        <div class="leg-notes">Christmas markets open 23 Nov</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Stuttgart</div>
+        <div class="leg-dates">1- 5 Dec · 4 nights</div>
+        <div class="leg-notes">Christmas markets open 25 Nov. Esslingen and Tubingen day trips.</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Munich</div>
+        <div class="leg-dates">5-9 Dec· 4 nights</div>
+        <div class="leg-notes">Christmas markets open 21 Nov. SchlossNeuschwanstein and Salzburg day trips.</div>
+      </div>
+      <div class="itinerary-leg">
+        <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Return to MEL</div>
+        <div class="leg-dates">9 Dec · TBC</div>
+        <div class="leg-notes">Train back to London or fly from Munich TBA.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ MAP ░░ -->
+  <section>
+    <p class="section-label">Our route</p>
+    <div style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); line-height: 0;">
+      <iframe
+        src="https://www.google.com/maps/d/embed?mid=1hdbuCDBs65SH8O598oDKhb5Lec2JoJA&ehbc=2E312F"
+        width="100%"
+        height="420"
+        style="border: none; display: block;"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Trip route map">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ░░ ACCOMMODATION ░░ -->
+  <section>
+    <p class="section-label">Accommodation</p>
+    <div class="card">
+      <!--
+        HOW TO EDIT:
+        1. Copy a .link-item block.
+        2. Fill in title, dates, and the booking URL (replace # with the real link).
+        3. Change the badge class: badge-booked (green), badge-confirmed (gold), badge-looking (grey).
+        4. Change the dot colour to match: green=#2a5c3f, grey=#aaa, red=var(--accent).
+      -->
+      <div class="link-item">
+        <div class="link-dot" style="background:#2a5c3f;"></div>
+        <div class="link-main">
+          <div class="link-title">UK — TBC based on route</div>
+          <div class="link-sub">9 nights</div>
+          <div class="link-url"><a href="#">Add booking link here</a></div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#2a5c3f;"></div>
+        <div class="link-main">
+          <div class="link-title">London — TBC</div>
+          <div class="link-sub">2 nights</div>
+          <div class="link-url"><a href="#">Add booking link here</a></div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Bruges — TBC</div>
+          <div class="link-sub">2 nights</div>
+          <div class="link-url"><a href="#">Add booking link here</a></div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Brussels — TBC</div>
+          <div class="link-sub">2 nights</div>
+          <div class="link-url"><a href="#">Add booking link here</a></div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#2a5c3f;"></div>
+        <div class="link-main">
+          <div class="link-title">Cologne — Rhein-Hotel St Martin</div>
+          <div class="link-sub">2 nights</div>
+          <div class="link-url"><a href="https://au.hotels.com/ho2461341760/rhein-hotel-st-martin-cologne-germany/">Booked Hotels.com</a></div>
+        </div>
+        <span class="badge badge-booked">BOOKED</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Stuttgart — TBC</div>
+          <div class="link-sub">4 nights</div>
+          <div class="link-url"><a href="#">Add booking link here</a></div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Munich — TBC</div>
+          <div class="link-sub">4 nights</div>
+          <div class="link-url"><a href="#">Add booking link here</a></div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <!-- Add more .link-item blocks here -->
+    </div>
+  </section>
+
+  <!-- ░░ FLIGHTS & TRANSPORT ░░ -->
+  <section>
+    <p class="section-label">Flights &amp; transport</p>
+    <div class="card">
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">MEL → LHR </div>
+          <div class="link-sub">13 Nov 2026 · Add airline &amp; flight number once booked</div>
+          <div class="link-url"><a href="#">Add booking confirmation link</a></div>
+        </div>
+        <span class="badge badge-looking">Looking</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">London → Bruges (train)</div>
+          <div class="link-sub">Eurostar to Brussels then local, approx 3 hrs</div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Bruges to Brussels</div>
+<div class="link-sub">approx 1 hrs</div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Brussels to Cologne</div>
+          <div class="link-sub">ICE, approx. 2.5 hrs</div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Cologne to Stuttgart</div>
+          <div class="link-sub">ICE, approx. 2 hrs</div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:#aaa;"></div>
+        <div class="link-main">
+          <div class="link-title">Stuttgart to Munich</div>
+          <div class="link-sub">ICE, approx. 2 hrs. Bayern ticket in Bavaria for day trips, regional rail.</div>
+        </div>
+        <span class="badge badge-looking">TBC</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ THINGS TO DO ░░ -->
+  <section>
+    <p class="section-label">Things to do</p>
+    <div class="card">
+      <!--
+        HOW TO EDIT: Add .link-item rows.
+        Use badge-confirmed (gold) for ticketed/booked things, badge-wishlist (grey) for ideas.
+      -->
+      <div class="link-item">
+        <div class="link-dot" style="background:var(--gold);"></div>
+        <div class="link-main">
+          <div class="link-title">Winter Wonderland, Hyde Park</div>
+          <div class="link-sub">London · Mid-Nov to Jan · Tickets required for some rides</div>
+          <div class="link-url"><a href="https://hydeparkwinterwonderland.com">hydeparkwinterwonderland.com</a></div>
+        </div>
+        <span class="badge badge-wishlist">Wishlist</span>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:var(--gold);"></div>
+        <div class="link-main">
+          <div class="link-title">Cologne Christmas Market</div>
+          <div class="link-sub">Germany · Multiple markets across the city</div>
+          <div class="link-url"><a href="https://www.cologne-tourism.com">cologne-tourism.com</a></div>
+        </div>
+        <span class="badge badge-wishlist">Wishlist</span>
+      </div>
+      <!-- Add more activities here -->
+    </div>
+  </section>
+
+  <!-- ░░ USEFUL LINKS ░░ -->
+  <section>
+    <p class="section-label">Useful links</p>
+    <div class="card">
+      <!--
+        Add any reference links here: travel insurance, visa info, currency apps, etc.
+      -->
+      <div class="link-item">
+        <div class="link-dot" style="background:var(--accent);"></div>
+        <div class="link-main">
+          <div class="link-title">Travel insurance — TBC</div>
+          <div class="link-url"><a href="#">Add link here</a></div>
+        </div>
+      </div>
+      <div class="link-item">
+        <div class="link-dot" style="background:var(--accent);"></div>
+        <div class="link-main">
+          <div class="link-title">Currency &amp; exchange rates</div>
+          <div class="link-url"><a href="https://www.xe.com">xe.com</a></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ░░ BUDGET ░░ -->
+  <section>
+    <p class="section-label">Budget tracker</p>
+    <div class="card">
+      <!--
+        HOW TO EDIT BUDGET:
+        1. Change TOTAL_BUDGET below to your total trip budget in AUD.
+        2. Update each category amount in the data-amount attributes AND the visible text.
+        3. The spent total and progress bar update automatically from data-amount values.
+      -->
+      <div class="budget-summary">
+        <div class="budget-summary-cell">
+          <div class="budget-summary-num" id="spent-total">$0</div>
+          <div class="budget-summary-label">committed / spent</div>
+        </div>
+        <div class="budget-summary-cell">
+          <div class="budget-summary-num" id="remaining">—</div>
+          <div class="budget-summary-label">remaining</div>
+        </div>
+      </div>
+      <div class="budget-progress"><div class="budget-progress-fill" id="progress-fill" style="width:0%"></div></div>
+
+      <div class="budget-row" data-amount="0">
+        <div><div class="budget-cat">Flights (x2)</div><div class="budget-note">MEL–LHR–MEL</div></div>
+        <div class="budget-amt">$0</div>
+      </div>
+      <div class="budget-row" data-amount="0">
+        <div><div class="budget-cat">Accommodation</div><div class="budget-note">All stays</div></div>
+        <div class="budget-amt">$0</div>
+      </div>
+      <div class="budget-row" data-amount="0">
+        <div><div class="budget-cat">Rail</div><div class="budget-note">Train tickets, Eurostar, ICE, etc</div></div>
+        <div class="budget-amt">$0</div>
+      </div>
+      <div class="budget-row" data-amount="0">
+        <div><div class="budget-cat">Hire car</div><div class="budget-note">UK only (excl. London)</div></div>
+        <div class="budget-amt">$0</div>
+      </div>
+      <div class="budget-row" data-amount="0">
+        <div><div class="budget-cat">Travel insurance</div></div>
+        <div class="budget-amt">$0</div>
+      </div>
+      <div class="budget-row total">
+        <div><div class="budget-cat">Total budget</div></div>
+        <!-- ★ UPDATE THIS NUMBER ★ -->
+        <div class="budget-amt" id="total-budget">$20,000</div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>Updated <!-- EDIT DATE BELOW --> June 2026 &middot; Just for family</p>
+    <p style="margin-top:4px;">60 nights &middot; 2 passengers &middot; Melbourne → UK & Europe → Melbourne</p>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+/* ── Countdown ── */
+(function () {
+  var DEP = new Date('2026-11-13T08:00:00+11:00'); /* ★ Adjust departure time if needed ★ */
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var diff = DEP - Date.now();
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent  = '0';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent  = '00';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000)  / 60000);
+    document.getElementById('cd-days').textContent  = d;
+    document.getElementById('cd-hours').textContent = pad(h);
+    document.getElementById('cd-mins').textContent  = pad(m);
+  }
+  tick();
+  setInterval(tick, 10000);
+})();
+
+/* ── Slideshow ── */
+(function () {
+  var slides    = Array.from(document.querySelectorAll('#slideshow .slide'));
+  var dotsWrap  = document.getElementById('slide-dots');
+  var prevBtn   = document.getElementById('slide-prev');
+  var nextBtn   = document.getElementById('slide-next');
+  var placeEl   = document.getElementById('slide-place');
+  var descEl    = document.getElementById('slide-desc');
+  var counterEl = document.getElementById('slide-counter');
+  if (!slides.length) return;
+
+  var current = 0;
+  var timer;
+
+  /* Build dots */
+  slides.forEach(function (_, i) {
+    var d = document.createElement('button');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Photo ' + (i + 1));
+    d.addEventListener('click', function () { goTo(i); resetTimer(); });
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    placeEl.textContent   = slides[current].dataset.place || '';
+    descEl.innerHTML      = slides[current].dataset.desc  || '';
+    counterEl.textContent = (current + 1) + ' / ' + slides.length;
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+
+  prevBtn.addEventListener('click', function () { goTo(current - 1); resetTimer(); });
+  nextBtn.addEventListener('click', function () { goTo(current + 1); resetTimer(); });
+
+  goTo(0);
+  resetTimer();
+})();
+
+
+(function () {
+  var TOTAL = 20000; /* ★ UPDATE THIS to your total budget (AUD) ★ */
+  var rows  = document.querySelectorAll('.budget-row[data-amount]');
+  var spent = 0;
+  rows.forEach(function (r) { spent += parseFloat(r.dataset.amount) || 0; });
+  var remaining = TOTAL - spent;
+  var pct = Math.min(100, Math.round((spent / TOTAL) * 100));
+  document.getElementById('spent-total').textContent   = '$' + spent.toLocaleString();
+  document.getElementById('remaining').textContent     = '$' + remaining.toLocaleString();
+  document.getElementById('total-budget').textContent  = '$' + TOTAL.toLocaleString();
+  document.getElementById('progress-fill').style.width = pct + '%';
+})();
+</script>
+</body>
+</html>
