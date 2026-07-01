@@ -384,12 +384,12 @@
       -->
       <div class="itinerary-leg">
         <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>Melbourne → London</div>
-        <div class="leg-dates">14 Nov · Flight</div>
-        <div class="leg-notes">Departing MEL, arriving LHR.</div>
+        <div class="leg-dates">12 Nov · Flight</div>
+        <div class="leg-notes">Departing BNE, arriving LHR 13 Nov, 6:00am.</div>
       </div>
       <div class="itinerary-leg">
         <div class="leg-title"><span class="leg-dot" style="background:var(--muted);"></span>UK</div>
-        <div class="leg-dates">14-22 Nov · Flight</div>
+        <div class="leg-dates">14-22 Nov</div>
         <div class="leg-notes">Locations TBC. Edgworth, Skem, Exeter.</div>
       </div>
       <div class="itinerary-leg">
@@ -673,7 +673,7 @@
 <script>
 /* ── Countdown ── */
 (function () {
-  var DEP = new Date('2026-11-13T08:00:00+11:00'); /* ★ Adjust departure time if needed ★ */
+  var DEP = new Date('2026-11-12T08:00:00+11:00'); /* ★ Adjust departure time if needed ★ */
   function pad(n) { return String(n).padStart(2, '0'); }
   function tick() {
     var diff = DEP - Date.now();
